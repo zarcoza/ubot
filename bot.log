@@ -1,0 +1,745 @@
+[2025-12-29 11:39:19,445] [INFO] Connecting to 149.154.167.51:443/TcpFull...
+[2025-12-29 11:39:19,461] [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.100.174:8000
+[2025-12-29 11:39:19,461] [INFO] [33mPress CTRL+C to quit[0m
+[2025-12-29 11:39:22,499] [INFO] Connection to 149.154.167.51:443/TcpFull complete!
+[2025-12-29 11:40:09,186] [INFO] Phone migrated to 5
+[2025-12-29 11:40:09,420] [INFO] Reconnecting to new data center 5
+[2025-12-29 11:40:09,643] [INFO] Disconnecting from 149.154.167.51:443/TcpFull...
+[2025-12-29 11:40:09,644] [INFO] Disconnection from 149.154.167.51:443/TcpFull complete!
+[2025-12-29 11:40:09,644] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:40:11,200] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:40:38,973] [INFO] Scheduler started
+[2025-12-29 11:40:41,138] [INFO] \U0001f496 Bot aktif, kamu masuk sebagai \u901e\u771f \u5805\u525b. Menunggu perintahmu, sayang!
+[2025-12-29 11:41:10,416] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:41:10,464] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:41:10,465] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:41:10,465] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:41:10,495] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:41:44,135] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:41:44,136] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:41:44,136] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:41:44,136] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:41:44,234] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:42:11,606] [INFO] The server closed the connection while sending
+[2025-12-29 11:42:11,607] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:42:11,612] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:42:11,612] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:42:11,612] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:42:11,744] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:42:11,801] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:42:12,976] [INFO] Got difference for account updates
+[2025-12-29 11:42:16,528] [INFO] Got difference for account updates
+[2025-12-29 11:42:23,797] [INFO] Got difference for account updates
+[2025-12-29 11:42:35,623] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:42:35,624] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:42:35,624] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:42:35,624] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:42:35,653] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:42:36,457] [INFO] Got difference for account updates
+[2025-12-29 11:42:36,948] [INFO] Got difference for account updates
+[2025-12-29 11:42:38,619] [INFO] Got difference for account updates
+[2025-12-29 11:42:42,134] [INFO] Got difference for account updates
+[2025-12-29 11:42:49,525] [INFO] Got difference for account updates
+[2025-12-29 11:43:03,668] [INFO] Got difference for account updates
+[2025-12-29 11:43:11,667] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:11,667] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:11,667] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:43:11,667] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:11,668] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:43:11,694] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:43:12,432] [INFO] Got difference for account updates
+[2025-12-29 11:43:13,016] [INFO] Got difference for account updates
+[2025-12-29 11:43:14,945] [INFO] Got difference for account updates
+[2025-12-29 11:43:19,299] [INFO] Got difference for account updates
+[2025-12-29 11:43:28,630] [INFO] Got difference for account updates
+[2025-12-29 11:43:28,781] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:28,781] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:28,781] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:43:28,781] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:43:28,781] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:43:28,821] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:43:29,513] [INFO] Got difference for account updates
+[2025-12-29 11:43:30,060] [INFO] Got difference for account updates
+[2025-12-29 11:43:32,379] [INFO] Got difference for account updates
+[2025-12-29 11:43:36,743] [INFO] Got difference for account updates
+[2025-12-29 11:43:53,674] [INFO] Got difference for account updates
+[2025-12-29 11:43:53,870] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:43:53,877] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:43:53,877] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:43:53,877] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:43:53,878] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:43:53,934] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:43:54,580] [INFO] Got difference for account updates
+[2025-12-29 11:43:58,143] [INFO] Got difference for account updates
+[2025-12-29 11:44:10,075] [INFO] Got difference for account updates
+[2025-12-29 11:44:10,348] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:10,355] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:10,355] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:44:10,355] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:10,355] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:44:10,394] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:44:10,842] [INFO] Got difference for account updates
+[2025-12-29 11:44:11,952] [INFO] Got difference for account updates
+[2025-12-29 11:44:15,543] [INFO] Got difference for account updates
+[2025-12-29 11:44:29,624] [INFO] Got difference for account updates
+[2025-12-29 11:44:29,794] [INFO] The server closed the connection while sending
+[2025-12-29 11:44:29,795] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:29,799] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:44:29,799] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:44:29,799] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:44:29,834] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:44:29,878] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:44:30,691] [INFO] Got difference for account updates
+[2025-12-29 11:44:32,935] [INFO] Got difference for account updates
+[2025-12-29 11:44:36,170] [INFO] Got difference for account updates
+[2025-12-29 11:44:41,897] [INFO] Got difference for account updates
+[2025-12-29 11:44:59,141] [INFO] Got difference for account updates
+[2025-12-29 11:44:59,976] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:59,988] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:59,988] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:44:59,989] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:44:59,989] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:45:00,016] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:45:00,672] [INFO] Got difference for account updates
+[2025-12-29 11:45:04,911] [INFO] Got difference for account updates
+[2025-12-29 11:45:17,348] [INFO] Got difference for account updates
+[2025-12-29 11:45:17,490] [INFO] The server closed the connection while sending
+[2025-12-29 11:45:17,490] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:45:17,494] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:45:17,494] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:45:17,494] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:45:17,525] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:45:17,561] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:45:18,349] [INFO] Got difference for account updates
+[2025-12-29 11:45:19,402] [INFO] Got difference for account updates
+[2025-12-29 11:45:20,909] [INFO] Got difference for account updates
+[2025-12-29 11:45:23,350] [INFO] Got difference for account updates
+[2025-12-29 11:45:26,972] [INFO] Got difference for account updates
+[2025-12-29 11:45:34,227] [INFO] Got difference for account updates
+[2025-12-29 11:45:57,939] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:45:57,940] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:45:57,940] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:45:57,940] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:45:57,984] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:45:58,710] [INFO] Got difference for account updates
+[2025-12-29 11:51:54,628] [INFO] [11:45:58] Mulai meneruskan pesan selama 1.00 jam~
+[2025-12-29 11:51:54,654] [WARNING] Server sent a very old message with ID 7589136563604694121, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,661] [WARNING] Server sent a very old message with ID 7589136563604691237, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,664] [WARNING] Server sent a very old message with ID 7589136563604691581, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,667] [WARNING] Server sent a very old message with ID 7589136563604690521, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,669] [WARNING] Server sent a very old message with ID 7589136563604688897, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,672] [WARNING] Server sent a very old message with ID 7589136563604693525, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,673] [WARNING] Server sent a very old message with ID 7589136563604692169, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,674] [WARNING] Server sent a very old message with ID 7589136563604693949, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,675] [WARNING] Server sent a very old message with ID 7589136563604692541, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,676] [WARNING] Server sent a very old message with ID 7589136563604689649, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,676] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,677] [WARNING] Server sent a very old message with ID 7589136563604690529, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,677] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,679] [WARNING] Server sent a very old message with ID 7589136563604690537, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,679] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,680] [WARNING] Server sent a very old message with ID 7589136563604690597, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,680] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,681] [WARNING] Server sent a very old message with ID 7589136563604690577, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,681] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,683] [WARNING] Server sent a very old message with ID 7589136563604690557, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,683] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,684] [WARNING] Server sent a very old message with ID 7589136563620141093, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,684] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,686] [WARNING] Server sent a very old message with ID 7589136563620141101, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,686] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,690] [WARNING] Server sent a very old message with ID 7589136563604692565, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,690] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,694] [WARNING] Server sent a very old message with ID 7589136563604692189, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,694] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,697] [WARNING] Server sent a very old message with ID 7589136563604694157, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,698] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,702] [WARNING] Server sent a very old message with ID 7589136563604691545, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,702] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,706] [WARNING] Server sent a very old message with ID 7589136563604693809, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,706] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,710] [WARNING] Server sent a very old message with ID 7589136563604689505, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,710] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,714] [WARNING] Server sent a very old message with ID 7589136563604694097, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,715] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,719] [WARNING] Server sent a very old message with ID 7589136563604689381, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,719] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,723] [WARNING] Server sent a very old message with ID 7589136563604691641, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,723] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,727] [WARNING] Server sent a very old message with ID 7589136563604693821, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,727] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,734] [WARNING] Server sent a very old message with ID 7589136563604692457, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,735] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,739] [WARNING] Server sent a very old message with ID 7589136563604693997, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,739] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,743] [WARNING] Server sent a very old message with ID 7589136563604692821, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,744] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,748] [WARNING] Server sent a very old message with ID 7589136563604690629, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,748] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,752] [WARNING] Server sent a very old message with ID 7589136563604689513, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,753] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,757] [WARNING] Server sent a very old message with ID 7589136563604689393, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,757] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,761] [WARNING] Server sent a very old message with ID 7589136563604694141, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,761] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,766] [WARNING] Server sent a very old message with ID 7589136563604692397, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,766] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,770] [WARNING] Server sent a very old message with ID 7589136563604689105, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,770] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,774] [WARNING] Server sent a very old message with ID 7589136563604692237, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,774] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,779] [WARNING] Server sent a very old message with ID 7589136563604691781, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,779] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,783] [WARNING] Server sent a very old message with ID 7589136563604693629, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,783] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,788] [WARNING] Server sent a very old message with ID 7589136563604689053, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,788] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,793] [WARNING] Server sent a very old message with ID 7589136563604689545, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,793] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,797] [WARNING] Server sent a very old message with ID 7589136563604693869, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,798] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,802] [WARNING] Server sent a very old message with ID 7589136563604693081, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,803] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,807] [WARNING] Server sent a very old message with ID 7589136563604694013, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,808] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,812] [WARNING] Server sent a very old message with ID 7589136563604692697, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,812] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,817] [WARNING] Server sent a very old message with ID 7589136563620141085, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,817] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,822] [WARNING] Server sent a very old message with ID 7589136563604692377, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,822] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,827] [WARNING] Server sent a very old message with ID 7589136563604692805, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,827] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,833] [WARNING] Server sent a very old message with ID 7589136563620141089, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,833] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,838] [WARNING] Server sent a very old message with ID 7589136563604693033, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,838] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,844] [WARNING] Server sent a very old message with ID 7589136563604692761, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,844] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,849] [WARNING] Server sent a very old message with ID 7589136563604689633, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,849] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,855] [WARNING] Server sent a very old message with ID 7589136563604690725, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,855] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,860] [WARNING] Server sent a very old message with ID 7589136563604692637, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,861] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,866] [WARNING] Server sent a very old message with ID 7589136563604692653, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,866] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,872] [WARNING] Server sent a very old message with ID 7589136563604690025, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,872] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,878] [WARNING] Server sent a very old message with ID 7589136563604689989, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,878] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,884] [WARNING] Server sent a very old message with ID 7589136563604692657, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,884] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,890] [WARNING] Server sent a very old message with ID 7589136563604688985, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,890] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,896] [WARNING] Server sent a very old message with ID 7589136563604694153, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,896] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,901] [WARNING] Server sent a very old message with ID 7589136563604693489, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,902] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,908] [WARNING] Server sent a very old message with ID 7589136563604689161, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,908] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,914] [WARNING] Server sent a very old message with ID 7589136563604692677, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,914] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,919] [WARNING] Server sent a very old message with ID 7589136563604693561, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,920] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,925] [WARNING] Server sent a very old message with ID 7589136563604691853, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,925] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,931] [WARNING] Server sent a very old message with ID 7589136563604693025, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,931] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,937] [WARNING] Server sent a very old message with ID 7589136563604691165, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,937] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,943] [WARNING] Server sent a very old message with ID 7589136563604693509, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,943] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,949] [WARNING] Server sent a very old message with ID 7589136563604693577, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,949] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,955] [WARNING] Server sent a very old message with ID 7589136563604689157, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,955] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,961] [WARNING] Server sent a very old message with ID 7589136563604691909, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,961] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,967] [WARNING] Server sent a very old message with ID 7589136563604688941, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,967] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,973] [WARNING] Server sent a very old message with ID 7589136563604693301, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,973] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,979] [WARNING] Server sent a very old message with ID 7589136563604691229, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,979] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,985] [WARNING] Server sent a very old message with ID 7589136563604693273, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,985] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:54,993] [WARNING] Server sent a very old message with ID 7589136563604694273, ignoring (see FAQ for details)
+[2025-12-29 11:51:54,994] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,002] [WARNING] Server sent a very old message with ID 7589136563604690785, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,002] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,008] [WARNING] Server sent a very old message with ID 7589136563604693085, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,009] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,015] [WARNING] Server sent a very old message with ID 7589136563604692429, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,015] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,021] [WARNING] Server sent a very old message with ID 7589136563604693501, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,021] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,027] [WARNING] Server sent a very old message with ID 7589136563604689029, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,027] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,033] [WARNING] Server sent a very old message with ID 7589136563604691185, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,033] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,039] [WARNING] Server sent a very old message with ID 7589136563604691877, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,040] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,046] [WARNING] Server sent a very old message with ID 7589136563604692845, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,046] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,052] [WARNING] Server sent a very old message with ID 7589136563604692825, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,052] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,058] [WARNING] Server sent a very old message with ID 7589136563604693297, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,058] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,065] [WARNING] Server sent a very old message with ID 7589136563604692617, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,065] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,071] [WARNING] Server sent a very old message with ID 7589136563604690237, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,071] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,077] [WARNING] Server sent a very old message with ID 7589136563604689985, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,078] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,084] [WARNING] Server sent a very old message with ID 7589136563604691453, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,084] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,090] [WARNING] Server sent a very old message with ID 7589136563604691417, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,090] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,096] [WARNING] Server sent a very old message with ID 7589136563604693005, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,097] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,103] [WARNING] Server sent a very old message with ID 7589136563604692405, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,103] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,109] [WARNING] Server sent a very old message with ID 7589136563604689853, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,110] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,116] [WARNING] Server sent a very old message with ID 7589136563604693225, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,116] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,123] [WARNING] Server sent a very old message with ID 7589136563620141069, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,123] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,130] [WARNING] Server sent a very old message with ID 7589136563604693441, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,130] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,136] [WARNING] Server sent a very old message with ID 7589136563620141073, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,136] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,143] [WARNING] Server sent a very old message with ID 7589136563604689689, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,143] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,150] [WARNING] Server sent a very old message with ID 7589136563604692153, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,150] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,157] [WARNING] Server sent a very old message with ID 7589136563604690969, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,157] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,164] [WARNING] Server sent a very old message with ID 7589136563620141065, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,164] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,171] [WARNING] Server sent a very old message with ID 7589136563604694177, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,171] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,177] [WARNING] Server sent a very old message with ID 7589136563604689265, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,177] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,183] [WARNING] Server sent a very old message with ID 7589136563604690289, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,183] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,187] [WARNING] Server sent a very old message with ID 7589136563604693721, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,187] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,191] [WARNING] Server sent a very old message with ID 7589136563604689113, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,191] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,194] [WARNING] Server sent a very old message with ID 7589136563604689173, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,194] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,197] [WARNING] Server sent a very old message with ID 7589136563604691397, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,197] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,200] [WARNING] Server sent a very old message with ID 7589136563604691897, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,200] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,203] [WARNING] Server sent a very old message with ID 7589136563604689997, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,204] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,204] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:51:55,207] [WARNING] Server sent a very old message with ID 7589136563604690741, ignoring (see FAQ for details)
+[2025-12-29 11:51:55,207] [WARNING] Security error while unpacking a received message: Too many messages had to be ignored consecutively
+[2025-12-29 11:51:55,207] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:51:55,207] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:51:55,207] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:51:55,207] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:51:55,236] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:51:55,544] [INFO] Got difference for account updates
+[2025-12-29 11:51:56,696] [INFO] Got difference for account updates
+[2025-12-29 11:52:00,215] [INFO] Got difference for account updates
+[2025-12-29 11:52:11,141] [INFO] [11:52:11] Sukses dikirim ke grup: BIO RPP 30
+[2025-12-29 11:52:11,336] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:11,416] [INFO] Got difference for account updates
+[2025-12-29 11:52:11,417] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:11,418] [INFO] Connection closed while sending data
+[2025-12-29 11:52:11,418] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:52:11,418] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:52:11,418] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:11,480] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:52:12,098] [INFO] Got difference for account updates
+[2025-12-29 11:52:12,505] [INFO] [11:52:12] Sukses dikirim ke grup: LPM JUALAN, CEK PINNED
+[2025-12-29 11:52:13,824] [INFO] Got difference for account updates
+[2025-12-29 11:52:20,074] [INFO] Got difference for account updates
+[2025-12-29 11:52:20,105] [INFO] [11:52:20] Sukses dikirim ke grup: lpm jualan trade jaseb
+[2025-12-29 11:52:39,538] [INFO] Got difference for account updates
+[2025-12-29 11:52:39,879] [INFO] The server closed the connection while sending
+[2025-12-29 11:52:39,880] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:39,890] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:52:39,890] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:52:39,890] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:52:39,916] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:52:39,960] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:52:40,196] [INFO] [11:52:40] Sukses dikirim ke grup: Lpm trade
+[2025-12-29 11:52:40,596] [INFO] Got difference for account updates
+[2025-12-29 11:52:40,811] [INFO] [11:52:40] Sukses dikirim ke grup: LPM AARAV
+[2025-12-29 11:52:42,898] [INFO] Got difference for account updates
+[2025-12-29 11:52:47,137] [INFO] [11:52:47] Sukses dikirim ke grup: LPM TRADE & JUALAN 1
+[2025-12-29 11:52:47,947] [INFO] Got difference for account updates
+[2025-12-29 11:52:55,933] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:55,936] [INFO] The server closed the connection while sending
+[2025-12-29 11:52:55,943] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:52:55,943] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:52:55,944] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:52:55,944] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:52:55,982] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:52:56,033] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:52:56,103] [INFO] [11:52:56] Sukses dikirim ke grup: LPM GOJO
+[2025-12-29 11:52:56,696] [INFO] Got difference for account updates
+[2025-12-29 11:52:56,705] [INFO] [11:52:56] Sukses dikirim ke grup: LPM MEH MEH
+[2025-12-29 11:52:58,238] [INFO] Got difference for account updates
+[2025-12-29 11:52:58,260] [INFO] [11:52:58] Sukses dikirim ke grup: LPM JAEENIE - NO TIMER
+[2025-12-29 11:53:01,996] [INFO] Got difference for account updates
+[2025-12-29 11:53:07,062] [INFO] [11:53:07] Sukses dikirim ke grup: LPM JIHAN
+[2025-12-29 11:53:07,168] [INFO] The server closed the connection while sending
+[2025-12-29 11:53:07,169] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:53:07,173] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:53:07,173] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:53:07,173] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:53:07,227] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:53:07,273] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:53:08,016] [INFO] Got difference for account updates
+[2025-12-29 11:53:08,033] [INFO] [11:53:08] Sukses dikirim ke grup: LPM FREELANCE
+[2025-12-29 11:53:10,112] [INFO] Got difference for account updates
+[2025-12-29 11:53:15,375] [INFO] [11:53:15] Sukses dikirim ke grup: Lpm Cari kerjaan
+[2025-12-29 11:53:15,617] [INFO] Got difference for account updates
+[2025-12-29 11:53:29,157] [INFO] The server closed the connection while sending
+[2025-12-29 11:53:29,157] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:53:29,160] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:53:29,160] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:53:29,160] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:53:29,210] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:53:29,264] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:53:29,328] [INFO] [11:53:29] Sukses dikirim ke grup: LPM BEBAS - RBIO
+[2025-12-29 11:53:29,851] [INFO] Got difference for account updates
+[2025-12-29 11:53:31,661] [INFO] [11:53:31] Sukses dikirim ke grup: LPM RITZ
+[2025-12-29 11:53:31,840] [INFO] Got difference for account updates
+[2025-12-29 11:53:36,861] [INFO] Got difference for account updates
+[2025-12-29 11:53:46,754] [INFO] The server closed the connection while sending
+[2025-12-29 11:53:46,754] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:53:46,765] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:53:46,765] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:53:46,765] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:53:46,793] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:53:46,843] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:53:46,920] [INFO] [11:53:46] Sukses dikirim ke grup: LPM HVFUN ( BEBAS )
+[2025-12-29 11:53:47,694] [INFO] Got difference for account updates
+[2025-12-29 11:53:47,714] [INFO] [11:53:47] Sukses dikirim ke grup: LPM FREELANCE
+[2025-12-29 11:53:50,089] [INFO] Got difference for account updates
+[2025-12-29 11:53:50,110] [INFO] [11:53:50] Sukses dikirim ke grup: LPM SALZOYA - NO TIMER
+[2025-12-29 11:53:54,307] [INFO] Got difference for account updates
+[2025-12-29 11:54:14,786] [INFO] [11:54:14] Sukses dikirim ke grup: LPM FREELANCE
+[2025-12-29 11:54:15,018] [INFO] Got difference for account updates
+[2025-12-29 11:54:15,148] [INFO] The server closed the connection while sending
+[2025-12-29 11:54:15,148] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:54:15,154] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:54:15,155] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:54:15,155] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:54:15,212] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:54:15,253] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:54:15,751] [INFO] Got difference for account updates
+[2025-12-29 11:54:15,764] [INFO] [11:54:15] Sukses dikirim ke grup: \U0001d40b\U0001d40f\U0001d40c \U0001d401\U0001d408\U0001d417\U0001d404\U0001d40d\U0001d413\U0001d400
+[2025-12-29 11:54:17,131] [INFO] [11:54:17] Sukses dikirim ke grup: LPM DIKTA
+[2025-12-29 11:54:21,567] [INFO] Got difference for account updates
+[2025-12-29 11:54:24,449] [INFO] [11:54:24] Sukses dikirim ke grup: \U0001d5df\U0001d5e3\U0001d5e0 \U0001d5dd\U0001d5dc\U0001d5e0\U0001d5dc\U0001d5e1 – CEK PIN \U0001f4cc
+[2025-12-29 11:54:29,641] [INFO] The server closed the connection while sending
+[2025-12-29 11:54:29,641] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:54:29,664] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:54:29,664] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:54:29,665] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:54:29,713] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:54:29,772] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:54:30,991] [INFO] [11:54:30] Sukses dikirim ke grup: \u738b\u9e7f BOSS LPM 3
+[2025-12-29 11:54:41,398] [INFO] [11:54:41] Sukses dikirim ke grup: LPM CARI KERJA / ASSIST | NO OOT
+[2025-12-29 11:54:41,537] [INFO] Got difference for account updates
+[2025-12-29 11:54:41,684] [INFO] The server closed the connection while sending
+[2025-12-29 11:54:41,684] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:54:41,693] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:54:41,693] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:54:41,693] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:54:41,724] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:54:41,762] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:54:42,275] [INFO] Got difference for account updates
+[2025-12-29 11:54:42,287] [INFO] [11:54:42] Sukses dikirim ke grup: LPM NANAMI
+[2025-12-29 11:54:42,532] [INFO] [11:54:42] Sukses dikirim ke grup: LPM NEED ASSIST / KERJA
+[2025-12-29 11:54:48,535] [INFO] [11:54:48] Sukses dikirim ke grup: LPM JONES
+[2025-12-29 11:54:48,944] [INFO] The server closed the connection while sending
+[2025-12-29 11:54:48,945] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:54:48,951] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:54:48,951] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:54:48,951] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:54:48,980] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:54:49,033] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:54:49,233] [INFO] [11:54:49] Sukses dikirim ke grup: LPM KARANG
+[2025-12-29 11:54:49,985] [INFO] Got difference for account updates
+[2025-12-29 11:54:53,548] [INFO] [11:54:53] Sukses dikirim ke grup: LPM JAKEY, DIJUAL.
+[2025-12-29 11:55:19,940] [INFO] The server closed the connection while sending
+[2025-12-29 11:55:19,940] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:55:19,953] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:55:19,954] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:55:19,954] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:55:20,172] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:55:20,252] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:55:21,057] [INFO] Got difference for account updates
+[2025-12-29 11:55:21,065] [INFO] [11:55:21] Sukses dikirim ke grup: LPM CARI KERJAAN \u203c\ufe0f
+[2025-12-29 11:55:22,892] [INFO] Got difference for account updates
+[2025-12-29 11:55:26,687] [INFO] [11:55:26] Sukses dikirim ke grup: LPM FEMALE
+[2025-12-29 11:55:26,900] [INFO] Got difference for account updates
+[2025-12-29 11:55:39,194] [INFO] Got difference for account updates
+[2025-12-29 11:55:55,051] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:55:55,052] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:55:55,052] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:55:55,052] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:55:55,052] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:55:55,148] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:55:55,467] [INFO] [11:55:55] Sukses dikirim ke grup: LPM PAPA
+[2025-12-29 11:55:56,118] [INFO] Got difference for account updates
+[2025-12-29 11:55:58,002] [INFO] [11:55:58] Sukses dikirim ke grup: LPM ( LAPAK PROMOSI )
+[2025-12-29 11:55:58,186] [INFO] Got difference for account updates
+[2025-12-29 11:56:10,033] [INFO] [11:56:10] Sukses dikirim ke grup: LPM JOXENTA
+[2025-12-29 11:56:10,276] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:56:10,276] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:56:10,276] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:56:10,276] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:56:10,277] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:56:10,400] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:56:11,189] [INFO] [11:56:11] Sukses dikirim ke grup: LPM JUALAN TRADE JASEB BISNIS
+[2025-12-29 11:56:12,856] [INFO] Got difference for account updates
+[2025-12-29 11:56:17,006] [INFO] [11:56:17] Sukses dikirim ke grup: Lpm cari kerja/asisten
+[2025-12-29 11:56:17,474] [INFO] Got difference for account updates
+[2025-12-29 11:56:26,806] [INFO] The server closed the connection while sending
+[2025-12-29 11:56:26,807] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:56:26,815] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:56:26,816] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:56:26,816] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:56:26,847] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:56:26,886] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:56:27,022] [INFO] [11:56:27] Sukses dikirim ke grup: LPM AARON
+[2025-12-29 11:56:27,410] [INFO] Got difference for account updates
+[2025-12-29 11:56:27,594] [INFO] [11:56:27] Sukses dikirim ke grup: LPM MANDUKKIE
+[2025-12-29 11:56:28,071] [INFO] Got difference for account updates
+[2025-12-29 11:56:32,151] [INFO] [11:56:32] Sukses dikirim ke grup: LPM BEBAS
+[2025-12-29 11:56:33,529] [INFO] Got difference for account updates
+[2025-12-29 11:56:48,050] [INFO] The server closed the connection while sending
+[2025-12-29 11:56:48,051] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:56:48,060] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:56:48,060] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:56:48,060] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:56:48,088] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:56:48,129] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:56:48,272] [INFO] [11:56:48] Sukses dikirim ke grup: LPM Rendang \U0001f995
+[2025-12-29 11:56:49,296] [INFO] Got difference for account updates
+[2025-12-29 11:56:49,566] [INFO] [11:56:49] Sukses dikirim ke grup: lpm juyeon
+[2025-12-29 11:56:49,567] [INFO] [11:56:49] Batch 40 grup selesai. Istirahat 300 detik dulu ya...
+[2025-12-29 11:56:51,863] [INFO] Got difference for account updates
+[2025-12-29 11:57:00,674] [INFO] Got difference for account updates
+[2025-12-29 11:57:00,955] [INFO] The server closed the connection while sending
+[2025-12-29 11:57:00,955] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:57:00,959] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:57:00,959] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:57:00,959] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:57:04,031] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:57:04,089] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:57:04,900] [INFO] Got difference for account updates
+[2025-12-29 11:57:07,361] [INFO] Got difference for account updates
+[2025-12-29 11:57:15,409] [INFO] Got difference for account updates
+[2025-12-29 11:57:32,847] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:57:32,900] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:57:32,900] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:57:32,900] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:57:32,944] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:57:34,533] [INFO] Got difference for account updates
+[2025-12-29 11:57:38,006] [INFO] Got difference for account updates
+[2025-12-29 11:57:48,290] [INFO] Got difference for account updates
+[2025-12-29 11:57:56,016] [INFO] Got difference for account updates
+[2025-12-29 11:58:11,017] [INFO] The server closed the connection while sending
+[2025-12-29 11:58:11,017] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:58:11,020] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:58:11,020] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:58:11,021] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:58:11,158] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:58:11,216] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:58:12,300] [INFO] Got difference for account updates
+[2025-12-29 11:58:18,251] [INFO] Got difference for account updates
+[2025-12-29 11:58:35,819] [INFO] The server closed the connection while sending
+[2025-12-29 11:58:35,820] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:58:35,822] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:58:35,822] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:58:35,822] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:58:35,945] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:58:36,007] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:58:36,813] [INFO] Got difference for account updates
+[2025-12-29 11:58:52,666] [INFO] Got difference for account updates
+[2025-12-29 11:58:52,803] [INFO] The server closed the connection while sending
+[2025-12-29 11:58:52,803] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:58:52,807] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 11:58:52,808] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:58:52,808] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:58:52,924] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:58:52,959] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 11:58:53,607] [INFO] Got difference for account updates
+[2025-12-29 11:58:56,890] [INFO] Got difference for account updates
+[2025-12-29 11:59:16,501] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:59:16,501] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 11:59:16,501] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:59:16,502] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:59:16,543] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:59:17,842] [INFO] Got difference for account updates
+[2025-12-29 11:59:25,125] [INFO] Got difference for account updates
+[2025-12-29 11:59:36,225] [INFO] Got difference for account updates
+[2025-12-29 11:59:36,541] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:59:36,546] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:59:36,546] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:59:36,546] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 11:59:36,546] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:59:36,624] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 11:59:41,145] [INFO] Got difference for account updates
+[2025-12-29 11:59:54,678] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:59:54,678] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:59:54,678] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 11:59:54,678] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 11:59:54,678] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 11:59:54,705] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:00:25,675] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:00:25,676] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:00:25,676] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:00:25,676] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:00:25,702] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:00:26,377] [INFO] Got difference for account updates
+[2025-12-29 12:00:28,364] [INFO] Got difference for account updates
+[2025-12-29 12:00:31,586] [INFO] Got difference for account updates
+[2025-12-29 12:00:50,801] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:00:50,802] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:00:50,802] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:00:50,802] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:00:50,830] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:00:51,400] [INFO] Got difference for account updates
+[2025-12-29 12:01:06,049] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:01:06,054] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:01:06,054] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:01:06,055] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:01:06,055] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:01:06,093] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:01:07,001] [INFO] Got difference for account updates
+[2025-12-29 12:01:36,576] [WARNING] Server closed the connection: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:01:36,588] [INFO] Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+[2025-12-29 12:01:36,588] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:01:36,589] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:01:36,692] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:01:38,205] [INFO] Got difference for account updates
+[2025-12-29 12:01:39,641] [INFO] Got difference for account updates
+[2025-12-29 12:01:43,931] [INFO] Got difference for account updates
+[2025-12-29 12:01:52,142] [INFO] Got difference for account updates
+[2025-12-29 12:02:03,452] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:02:03,452] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:02:03,452] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:02:03,453] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:02:03,453] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:02:03,480] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:03:57,067] [INFO] [12:02:04] Sukses dikirim ke grup: BIO RPP 30
+[2025-12-29 12:03:57,192] [INFO] The server closed the connection while sending
+[2025-12-29 12:03:57,192] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:03:57,197] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 12:03:57,197] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:03:57,197] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:03:58,263] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:03:58,305] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 12:03:58,919] [INFO] Got difference for account updates
+[2025-12-29 12:03:58,927] [INFO] [12:03:58] Sukses dikirim ke grup: LPM JUALAN, CEK PINNED
+[2025-12-29 12:04:05,546] [INFO] Got difference for account updates
+[2025-12-29 12:04:05,835] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:05,839] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:05,839] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:04:05,840] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:05,840] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:04:05,884] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:04:05,969] [INFO] Sleeping for 2s (0:00:02) on ForwardMessagesRequest flood wait
+[2025-12-29 12:04:06,440] [INFO] Got difference for account updates
+[2025-12-29 12:04:22,956] [INFO] Got difference for account updates
+[2025-12-29 12:04:30,638] [INFO] [12:04:30] Sukses dikirim ke grup: lpm jualan trade jaseb
+[2025-12-29 12:04:30,734] [INFO] The server closed the connection while sending
+[2025-12-29 12:04:30,734] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:30,738] [INFO] Connection closed while receiving data: Not connected
+[2025-12-29 12:04:30,738] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:04:30,738] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:04:30,773] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:04:30,829] [WARNING] Security error while unpacking a received message: Server replied with a wrong session ID (see FAQ for details)
+[2025-12-29 12:04:31,608] [INFO] Got difference for account updates
+[2025-12-29 12:04:31,617] [INFO] [12:04:31] Sukses dikirim ke grup: Lpm trade
+[2025-12-29 12:04:34,951] [INFO] Got difference for account updates
+[2025-12-29 12:04:34,976] [INFO] [12:04:34] Sukses dikirim ke grup: LPM AARAV
+[2025-12-29 12:04:50,350] [INFO] Got difference for account updates
+[2025-12-29 12:04:50,525] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:50,525] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:50,525] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:04:50,525] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:04:50,526] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:04:50,569] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:04:50,724] [INFO] [12:04:50] Sukses dikirim ke grup: LPM TRADE & JUALAN 1
+[2025-12-29 12:04:52,260] [INFO] Got difference for account updates
+[2025-12-29 12:04:52,270] [INFO] [12:04:52] Sukses dikirim ke grup: LPM GOJO
+[2025-12-29 12:04:59,698] [INFO] Got difference for account updates
+[2025-12-29 12:05:32,208] [INFO] [12:05:32] Sukses dikirim ke grup: LPM FREELANCE 2
+[2025-12-29 12:05:32,439] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:32,448] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:32,448] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:05:32,448] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:32,448] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:05:32,492] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:05:33,096] [INFO] Got difference for account updates
+[2025-12-29 12:05:33,103] [INFO] [12:05:33] Sukses dikirim ke grup: LPM MEH MEH
+[2025-12-29 12:05:34,599] [INFO] Got difference for account updates
+[2025-12-29 12:05:38,350] [INFO] [12:05:38] Sukses dikirim ke grup: LPM JUALAN
+[2025-12-29 12:05:39,460] [INFO] Got difference for account updates
+[2025-12-29 12:05:51,174] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:51,177] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:51,177] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:05:51,177] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:05:51,177] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:05:52,229] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:05:52,429] [INFO] [12:05:52] Sukses dikirim ke grup: LPM JAEENIE - NO TIMER
+[2025-12-29 12:05:56,969] [INFO] [12:05:56] Sukses dikirim ke grup: LPM JIHAN
+[2025-12-29 12:05:57,049] [INFO] Got difference for account updates
+[2025-12-29 12:06:11,435] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:11,435] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:11,435] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:06:11,435] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:11,436] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:06:11,461] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:06:11,652] [INFO] [12:06:11] Sukses dikirim ke grup: LPM FREELANCE
+[2025-12-29 12:06:12,295] [INFO] Got difference for account updates
+[2025-12-29 12:06:15,751] [INFO] [12:06:15] Sukses dikirim ke grup: Lpm Cari kerjaan
+[2025-12-29 12:06:16,980] [INFO] Got difference for account updates
+[2025-12-29 12:06:42,295] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:42,300] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:42,300] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:06:42,300] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:06:42,300] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:06:42,350] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:06:42,802] [INFO] [12:06:42] Sukses dikirim ke grup: LPM BEBAS - RBIO
+[2025-12-29 12:06:43,646] [INFO] Got difference for account updates
+[2025-12-29 12:06:52,810] [INFO] Got difference for account updates
+[2025-12-29 12:06:57,238] [WARNING] Server closed the connection: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:06:57,238] [INFO] Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:06:57,238] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:06:57,239] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+[2025-12-29 12:06:57,239] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:06:57,274] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:06:57,547] [INFO] [12:06:57] Sukses dikirim ke grup: LPM RITZ
+[2025-12-29 12:06:57,981] [INFO] Got difference for account updates
+[2025-12-29 12:07:01,165] [INFO] [12:07:01] Sukses dikirim ke grup: LPM HVFUN ( BEBAS )
+[2025-12-29 12:07:19,905] [WARNING] Server closed the connection: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:07:19,981] [INFO] Connection closed while receiving data: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:07:19,982] [INFO] Connection closed while sending data
+[2025-12-29 12:07:19,982] [INFO] Closing current connection to begin reconnect...
+[2025-12-29 12:07:19,982] [INFO] Connecting to 91.108.56.197:443/TcpFull...
+[2025-12-29 12:07:19,982] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
+[2025-12-29 12:07:20,030] [INFO] Connection to 91.108.56.197:443/TcpFull complete!
+[2025-12-29 12:07:20,300] [INFO] [12:07:20] Sukses dikirim ke grup: LPM FREELANCE
+[2025-12-29 12:07:20,931] [INFO] Got difference for account updates
+[2025-12-29 12:07:24,125] [INFO] [12:07:24] Sukses dikirim ke grup: LPM SALZOYA - NO TIMER
+[2025-12-29 12:07:24,214] [INFO] Got difference for account updates
+[2025-12-29 12:07:57,208] [INFO] The server closed the connection while sending
+[2025-12-29 12:07:57,209] [INFO] <class 'ConnectionResetError'> during disconnect: [WinError 10054] An existing connection was forcibly closed by the remote host
