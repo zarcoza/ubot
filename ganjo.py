@@ -543,7 +543,11 @@ async def review_pesan(event):
         return
     user_id = event.sender_id
     pesan = pesan_simpan.get(user_id, "Belum ada pesan default yang disimpan.")
-    await event.respond(f"Pesan default Anda:\n\n{pesan}")
+    
+    buttons = [
+        [Button.inline("Ubah Pesan", data=b"ubah_pesan_menu")]
+    ]
+    await event.respond(f"Pesan default Anda:\n\n{pesan}", buttons=buttons)
 
 @client.on(events.NewMessage(pattern=r'/ubah_pesan(?:\s+(.+))?$'))
 async def ubah_pesan(event):
@@ -611,11 +615,17 @@ async def list_preset(event):
         return await event.respond("Anda belum memiliki preset pesan.")
     
     teks = "Daftar preset pesan Anda:\n\n"
+    buttons = []
     for idx, (nama, isi) in enumerate(preset_pesan[user_id].items(), 1):
         preview = isi[:50] + "..." if len(isi) > 50 else isi
         teks += f"{idx}. {nama}\n   Preview: {preview}\n\n"
+        # Button untuk pakai dan hapus preset
+        buttons.append([
+            Button.inline(f"Pakai {nama}", data=f"pakai_{user_id}_{nama}".encode()),
+            Button.inline(f"Hapus {nama}", data=f"hapus_{user_id}_{nama}".encode())
+        ])
     
-    await event.respond(teks)
+    await event.respond(teks, buttons=buttons)
 
 @client.on(events.NewMessage(pattern=r'/edit_preset'))
 async def edit_preset(event):
@@ -661,19 +671,26 @@ async def hapus_preset(event):
 async def review_jobs(event):
     if not await require_allowed(event):
         return
+    user_id = event.sender_id
     teks = "== Jadwal Aktif ==\n"
+    buttons = []
     if not job_data:
         teks += "Tidak ada jadwal."
     else:
-        for job_id, info in job_data.items():
-            durasi_jam = info['durasi'] / 60.0
-            teks += (
-                f"- ID: {job_id}\n"
-                f"  Mode: {info['mode']}\n"
-                f"  Grup: {info['jumlah']}\n"
-                f"  Durasi: {info['durasi']} menit ({durasi_jam:.2f} jam)\n"
-            )
-    await event.respond(teks)
+        user_jobs = {jid: info for jid, info in job_data.items() if info.get('user') == user_id}
+        if not user_jobs:
+            teks += "Tidak ada jadwal untuk Anda."
+        else:
+            for job_id, info in user_jobs.items():
+                durasi_jam = info['durasi'] / 60.0
+                teks += (
+                    f"- ID: {job_id[:20]}...\n"
+                    f"  Mode: {info['mode']}\n"
+                    f"  Grup: {info['jumlah']}\n"
+                    f"  Durasi: {info['durasi']} menit ({durasi_jam:.2f} jam)\n\n"
+                )
+                buttons.append([Button.inline(f"Hapus {job_id[:15]}...", data=f"delete_{job_id}".encode())])
+    await event.respond(teks, buttons=buttons if buttons else None)
 
 @client.on(events.NewMessage(pattern='/deletejob'))
 async def delete_job(event):
@@ -755,8 +772,18 @@ async def list_blacklist(event):
     if not blacklisted_groups:
         await event.respond("Blacklist kosong!")
     else:
-        teks = "== Grup dalam blacklist ==\n" + "\n".join(blacklisted_groups)
-        await event.respond(teks)
+        teks = "== Grup dalam blacklist ==\n\n"
+        buttons = []
+        blacklist_list = list(blacklisted_groups)
+        for idx, nama in enumerate(blacklist_list, 1):
+            teks += f"{idx}. {nama}\n"
+            # Gunakan index untuk referensi yang lebih aman
+            buttons.append([Button.inline(f"Hapus {nama[:25]}", data=f"rmbl_{idx}".encode())])
+        # Simpan mapping sementara untuk callback
+        if not hasattr(list_blacklist, '_mapping'):
+            list_blacklist._mapping = {}
+        list_blacklist._mapping[event.sender_id] = blacklist_list
+        await event.respond(teks, buttons=buttons)
 
 @client.on(events.NewMessage(pattern='/status'))
 async def cek_status(event):
@@ -953,17 +980,113 @@ async def callback_handler(event):
     if event.data == b"refresh_stats":
         await stats_handler(event)
         await event.answer("Statistik diperbarui!")
-
+    
     elif event.data == b"show_help":
         await help_cmd(event)
         await event.answer("Ini panduannya~")
-
+    
     elif event.data == b"download_log":
         try:
             await client.send_file(event.chat_id, 'bot.log', caption="Ini dia log-nya yaa!")
             await event.answer("Log dikirim!")
         except FileNotFoundError:
             await event.answer("Log belum tersedia~", alert=True)
+    
+    elif event.data == b"ubah_pesan_menu":
+        await event.answer("Gunakan: /ubah_pesan <pesan baru>", alert=True)
+    
+    elif event.data.startswith(b"delete_"):
+        # Handle delete job button
+        try:
+            job_id = event.data[7:].decode()  # Remove "delete_" prefix
+            user_id = event.sender_id
+            
+            # Verify job belongs to user
+            if job_id in job_data and job_data[job_id].get('user') == user_id:
+                scheduler.remove_job(job_id)
+                job_data.pop(job_id, None)
+                JOBS.pop(job_id, None)
+                await event.edit("Jadwal berhasil dihapus!")
+                await event.answer("Jadwal dihapus!")
+            else:
+                await event.answer("Jadwal tidak ditemukan atau bukan milik Anda!", alert=True)
+        except Exception as e:
+            logging.error(f"Error delete job via button: {e}")
+            await event.answer("Gagal menghapus jadwal!", alert=True)
+    
+    elif event.data.startswith(b"pakai_"):
+        # Handle pakai preset button: pakai_{user_id}_{nama_preset}
+        try:
+            data_parts = event.data[6:].decode().split('_', 1)  # Remove "pakai_" prefix
+            if len(data_parts) >= 2:
+                preset_user_id = int(data_parts[0])
+                nama_preset = data_parts[1]
+                
+                if preset_user_id == event.sender_id:
+                    if preset_user_id in preset_pesan and nama_preset in preset_pesan[preset_user_id]:
+                        pesan_simpan[preset_user_id] = preset_pesan[preset_user_id][nama_preset]
+                        await event.edit(f"Preset '{nama_preset}' telah dipilih sebagai pesan default!")
+                        await event.answer("Preset dipilih!")
+                    else:
+                        await event.answer("Preset tidak ditemukan!", alert=True)
+                else:
+                    await event.answer("Anda tidak memiliki akses!", alert=True)
+        except Exception as e:
+            logging.error(f"Error pakai preset via button: {e}")
+            await event.answer("Gagal memilih preset!", alert=True)
+    
+    elif event.data.startswith(b"hapus_"):
+        # Handle hapus preset button: hapus_{user_id}_{nama_preset}
+        try:
+            data_parts = event.data[6:].decode().split('_', 1)  # Remove "hapus_" prefix
+            if len(data_parts) >= 2:
+                preset_user_id = int(data_parts[0])
+                nama_preset = data_parts[1]
+                
+                if preset_user_id == event.sender_id:
+                    if preset_user_id in preset_pesan and nama_preset in preset_pesan[preset_user_id]:
+                        del preset_pesan[preset_user_id][nama_preset]
+                        await event.edit(f"Preset '{nama_preset}' berhasil dihapus!")
+                        await event.answer("Preset dihapus!")
+                    else:
+                        await event.answer("Preset tidak ditemukan!", alert=True)
+                else:
+                    await event.answer("Anda tidak memiliki akses!", alert=True)
+        except Exception as e:
+            logging.error(f"Error hapus preset via button: {e}")
+            await event.answer("Gagal menghapus preset!", alert=True)
+    
+    elif event.data.startswith(b"rmbl_"):
+        # Handle remove blacklist button: rmbl_{index}
+        try:
+            idx = int(event.data[5:].decode())  # Remove "rmbl_" prefix
+            user_id = event.sender_id
+            
+            # Get mapping from function attribute
+            if hasattr(list_blacklist, '_mapping') and user_id in list_blacklist._mapping:
+                blacklist_list = list_blacklist._mapping[user_id]
+                if 1 <= idx <= len(blacklist_list):
+                    nama = blacklist_list[idx - 1]
+                    blacklisted_groups.discard(nama)
+                    await event.edit(f"'{nama}' telah dihapus dari blacklist!")
+                    await event.answer("Grup dihapus dari blacklist!")
+                    # Clean up mapping
+                    del list_blacklist._mapping[user_id]
+                else:
+                    await event.answer("Index tidak valid!", alert=True)
+            else:
+                # Fallback: coba hapus langsung dengan nama dari blacklist
+                blacklist_list = list(blacklisted_groups)
+                if 1 <= idx <= len(blacklist_list):
+                    nama = blacklist_list[idx - 1]
+                    blacklisted_groups.discard(nama)
+                    await event.edit(f"'{nama}' telah dihapus dari blacklist!")
+                    await event.answer("Grup dihapus dari blacklist!")
+                else:
+                    await event.answer("Grup tidak ditemukan!", alert=True)
+        except Exception as e:
+            logging.error(f"Error remove blacklist via button: {e}")
+            await event.answer("Gagal menghapus dari blacklist!", alert=True)
 
 @client.on(events.NewMessage(pattern='/stats'))
 async def stats_handler(event):
