@@ -39,6 +39,7 @@ usage_stats = {}  # key: user_id, value: jumlah pesan yang berhasil dikirim
 start_time = datetime.now()
 TOTAL_SENT_MESSAGES = 0
 JOBS = {}
+active_forward_tasks = {}  # key: user_id, value: {'stop_flag': bool, 'task': asyncio.Task}
 DEFAULT_ALLOWED_USERS = {7605681637, 1538087933, 1735348722}  # Ganti dengan ID admin awal
 ALLOWED_USERS_FILE = 'allowed_users.txt'
 
@@ -105,11 +106,11 @@ def update_usage(user_id, count):
 # === FUNGSI UNTUK MELAKUKAN FORWARDING PESAN ===
 async def forward_job(
     user_id, mode, source, message_id_or_text,
-    jumlah_grup, durasi_jam: float, jumlah_pesan,
+    jumlah_grup, durasi_menit: float, jumlah_pesan,
     delay_per_group: int = 0
 ):
     start = datetime.now()
-    end = start + timedelta(hours=durasi_jam)
+    end = start + timedelta(minutes=durasi_menit)
     jeda_batch = delay_setting.get(user_id, 5)
     if delay_per_group <= 0:
         delay_per_group = delay_per_group_setting.get(user_id, 0)
@@ -117,20 +118,46 @@ async def forward_job(
     next_reset = now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
     harian_counter = 0
     total_counter = 0
+    
+    # Inisialisasi stop flag untuk user ini
+    if user_id not in active_forward_tasks:
+        active_forward_tasks[user_id] = {'stop_flag': False}
+    active_forward_tasks[user_id]['stop_flag'] = False
+    
+    # Parse multiple messages jika ada (dipisahkan oleh ||)
+    if isinstance(message_id_or_text, str) and '||' in message_id_or_text:
+        messages_list = [msg.strip() for msg in message_id_or_text.split('||') if msg.strip()]
+    else:
+        messages_list = [message_id_or_text]
 
-    info_msg = f"[{now:%H:%M:%S}] Mulai meneruskan pesan selama {durasi_jam:.2f} jam~"
+    durasi_jam = durasi_menit / 60.0
+    info_msg = f"[{now:%H:%M:%S}] Mulai meneruskan pesan selama {durasi_menit:.2f} menit ({durasi_jam:.2f} jam)~"
     print(info_msg)
     logging.info(info_msg)
 
     try:
-        await client.send_message(
-            user_id,
-            f"Sedang meneruskan pesan...\nDurasi: {durasi_jam:.2f} jam\nTarget harian: {jumlah_pesan} pesan."
-        )
+        pesan_info = f"Sedang meneruskan pesan...\nDurasi: {durasi_menit:.2f} menit\nTarget harian: {jumlah_pesan} pesan."
+        if len(messages_list) > 1:
+            pesan_info += f"\nTotal pesan berbeda: {len(messages_list)}"
+        await client.send_message(user_id, pesan_info)
     except Exception as e:
         logging.error(f"Error kirim notifikasi ke {user_id}: {e}")
 
     while datetime.now() < end:
+        # Cek stop flag
+        if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
+            stop_msg = f"[{datetime.now():%H:%M:%S}] Pengiriman dihentikan oleh user."
+            print(stop_msg)
+            logging.info(stop_msg)
+            try:
+                await client.send_message(
+                    user_id,
+                    f"Pengiriman pesan dihentikan.\nTotal terkirim: {total_counter} pesan."
+                )
+            except Exception as e:
+                logging.error(f"Error kirim notifikasi stop ke {user_id}: {e}")
+            break
+            
         if datetime.now() >= next_reset:
             harian_counter = 0
             next_reset += timedelta(days=1)
@@ -142,32 +169,111 @@ async def forward_job(
 
         counter = 0
         async for dialog in client.iter_dialogs():
+            # Cek stop flag lagi di dalam loop
+            if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
+                break
+                
             if datetime.now() >= end or harian_counter >= jumlah_pesan:
                 break
             if not dialog.is_group or dialog.name in blacklisted_groups:
                 continue
             try:
-                if mode == 'forward':
-                    msg = await client.get_messages(source, ids=int(message_id_or_text))
-                    if msg:
-                        await client.forward_messages(
-                            dialog.id, msg.id, from_peer=source
-                        )
-                else:
-                    await client.send_message(
-                        dialog.id, message_id_or_text, link_preview=True
+                # Kirim SEMUA pesan dari messages_list ke grup ini sebagai bubble chat terpisah
+                pesan_terkirim_grup = 0
+                for idx, current_message in enumerate(messages_list):
+                    # Cek stop flag sebelum setiap pesan
+                    if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
+                        break
+                    if datetime.now() >= end or harian_counter >= jumlah_pesan:
+                        break
+                    
+                    if mode == 'forward':
+                        # Untuk forward mode dengan multiple messages
+                        # current_message bisa berupa ID saja atau "source id"
+                        msg_id = None
+                        src = source
+                        
+                        if isinstance(current_message, int):
+                            msg_id = current_message
+                        elif isinstance(current_message, str):
+                            # Cek apakah hanya angka (ID saja)
+                            if current_message.strip().isdigit():
+                                msg_id = int(current_message.strip())
+                            else:
+                                # Mungkin format "source id" atau hanya ID dengan spasi
+                                parts = current_message.strip().split(maxsplit=1)
+                                if len(parts) == 2:
+                                    src = parts[0]
+                                    try:
+                                        msg_id = int(parts[1])
+                                    except ValueError:
+                                        msg_id = int(current_message.strip())
+                                else:
+                                    # Coba parse sebagai integer
+                                    try:
+                                        msg_id = int(current_message.strip())
+                                    except ValueError:
+                                        # Fallback ke message_id_or_text original jika list kosong
+                                        if isinstance(message_id_or_text, int):
+                                            msg_id = message_id_or_text
+                                        elif isinstance(message_id_or_text, str) and message_id_or_text.isdigit():
+                                            msg_id = int(message_id_or_text)
+                                        else:
+                                            continue
+                        
+                        if msg_id is not None:
+                            try:
+                                msg = await client.get_messages(src, ids=msg_id)
+                                if msg:
+                                    await client.forward_messages(
+                                        dialog.id, msg.id, from_peer=src
+                                    )
+                                    pesan_terkirim_grup += 1
+                                    harian_counter += 1
+                                    total_counter += 1
+                                    update_usage(user_id, 1)
+                                    
+                                    # Delay kecil antar pesan dalam grup yang sama
+                                    if idx < len(messages_list) - 1 and delay_per_group > 0:
+                                        await asyncio.sleep(min(delay_per_group, 2))  # Max 2 detik antar pesan
+                            except Exception as e:
+                                error_msg = (
+                                    f"[{datetime.now():%H:%M:%S}] Gagal forward pesan {idx+1}/{len(messages_list)} ke grup {dialog.name}: {e}"
+                                )
+                                print(error_msg)
+                                logging.error(error_msg)
+                                continue
+                    else:
+                        # Text mode - kirim pesan dari list
+                        try:
+                            await client.send_message(
+                                dialog.id, current_message, link_preview=True
+                            )
+                            pesan_terkirim_grup += 1
+                            harian_counter += 1
+                            total_counter += 1
+                            update_usage(user_id, 1)
+                            
+                            # Delay kecil antar pesan dalam grup yang sama
+                            if idx < len(messages_list) - 1 and delay_per_group > 0:
+                                await asyncio.sleep(min(delay_per_group, 2))  # Max 2 detik antar pesan
+                        except Exception as e:
+                            error_msg = (
+                                f"[{datetime.now():%H:%M:%S}] Gagal kirim pesan {idx+1}/{len(messages_list)} ke grup {dialog.name}: {e}"
+                            )
+                            print(error_msg)
+                            logging.error(error_msg)
+                            continue
+                
+                if pesan_terkirim_grup > 0:
+                    counter += 1
+                    log_msg = (
+                        f"[{datetime.now():%H:%M:%S}] Sukses kirim {pesan_terkirim_grup} pesan ke grup: {dialog.name}"
                     )
-
-                counter += 1
-                harian_counter += 1
-                total_counter += 1
-                update_usage(user_id, 1)
-
-                log_msg = (
-                    f"[{datetime.now():%H:%M:%S}] Sukses dikirim ke grup: {dialog.name}"
-                )
-                print(log_msg)
-                logging.info(log_msg)
+                    if len(messages_list) > 1:
+                        log_msg += f" ({len(messages_list)} bubble chat berbeda)"
+                    print(log_msg)
+                    logging.info(log_msg)
 
                 if delay_per_group > 0:
                     await asyncio.sleep(delay_per_group)
@@ -183,6 +289,10 @@ async def forward_job(
                 logging.error(error_msg)
                 continue
 
+        # Cek stop flag setelah batch
+        if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
+            break
+
         if harian_counter >= jumlah_pesan:
             notif = (
                 f"Target harian {jumlah_pesan} pesan tercapai!\n"
@@ -197,7 +307,8 @@ async def forward_job(
                 logging.error(f"Error kirim notifikasi ke {user_id}: {e}")
 
             sleep_seconds = (next_reset - datetime.now()).total_seconds()
-            await asyncio.sleep(sleep_seconds)
+            if sleep_seconds > 0:
+                await asyncio.sleep(sleep_seconds)
         else:
             batch_msg = (
                 f"[{datetime.now():%H:%M:%S}] Batch {counter} grup selesai. Istirahat {jeda_batch} detik dulu ya..."
@@ -206,8 +317,13 @@ async def forward_job(
             logging.info(batch_msg)
             await asyncio.sleep(jeda_batch)
 
+    # Hapus stop flag setelah selesai
+    if user_id in active_forward_tasks:
+        active_forward_tasks[user_id]['stop_flag'] = False
+
+    durasi_jam = durasi_menit / 60.0
     selesai = (
-        f"Forward selesai!\nTotal terkirim ke {total_counter} grup selama {durasi_jam:.2f} jam."
+        f"Forward selesai!\nTotal terkirim ke {total_counter} grup selama {durasi_menit:.2f} menit ({durasi_jam:.2f} jam)."
     )
     selesai_msg = f"[{datetime.now():%H:%M:%S}] {selesai}"
     print(selesai_msg)
@@ -228,7 +344,7 @@ async def schedule_cmd(event):
     if len(parts) < 3:
         return await event.respond(
             "Format salah:\n"
-            "/scheduleforward mode pesan/sumber jumlah_grup durasi jeda jumlah_pesan hari,jam jam:menit"
+            "/scheduleforward mode pesan/sumber jumlah_grup durasi_menit jeda jumlah_pesan hari1,hari2 jam:menit"
         )
     try:
         mode = parts[1].lower()
@@ -239,7 +355,7 @@ async def schedule_cmd(event):
 
         pesan_atau_sumber, jumlah, durasi, jeda, jumlah_pesan, hari_str, waktu = sisa
         jumlah = int(jumlah)
-        durasi = float(durasi)
+        durasi = float(durasi)  # Sekarang dalam menit
         jeda = int(jeda)
         jumlah_pesan = int(jumlah_pesan)
         jam, menit = map(int, waktu.split(':'))
@@ -256,10 +372,10 @@ async def schedule_cmd(event):
             if len(fp) != 2:
                 return await event.respond(
                     "Format forward schedule harus menyertakan sumber dan ID pesan.\n"
-                    "Contoh: /scheduleforward forward @channel 123 20 2 5 300 senin,jumat 08:00"
+                    "Contoh: /scheduleforward forward @channel 123 20 120 5 300 senin,jumat 08:00"
                 )
             source = fp[0]
-            message_id_or_text = int(fp[1])
+            message_id_or_text = fp[1]  # Bisa jadi string jika multiple messages
 
         for hari_eng in hari_list:
             job_id = f"{event.sender_id}{hari_eng}{int(datetime.now().timestamp())}"
@@ -300,49 +416,81 @@ async def forward_sekarang(event):
     if len(parts) < 3:
         return await event.respond(
             "Format salah:\n"
-            "/forward mode sumber/id/isipesan jumlah_grup jeda durasi jumlah_pesan"
+            "/forward mode sumber/id/isipesan jumlah_grup jeda durasi_menit jumlah_pesan\n\n"
+            "Untuk multiple pesan, pisahkan dengan ||\n"
+            "Contoh: /forward text \"Pesan 1\"||\"Pesan 2\"||\"Pesan 3\" 10 5 60 300"
         )
     try:
         mode = parts[1].lower()
         rest = parts[2].strip()
+        
         if mode == 'forward':
+            # Parse forward mode
+            # Cari posisi parameter numerik terakhir (jumlah_grup, jeda, durasi, jumlah_pesan)
+            # Format: source id1||id2||id3 jumlah_grup jeda durasi jumlah_pesan
             fparts = rest.split()
-            if len(fparts) < 5:
+            if len(fparts) < 6:
                 return await event.respond(
                     "Format salah:\n"
-                    "/forward forward <sumber> <jumlah_grup> <id_pesan> <jeda> <durasi_jam> <jumlah_pesan>"
+                    "/forward forward <sumber> <id_pesan> [||<id_pesan2>]... <jumlah_grup> <jeda> <durasi_menit> <jumlah_pesan>"
                 )
+            
+            # Parameter selalu di akhir: jumlah_grup jeda durasi jumlah_pesan
+            jumlah = int(fparts[-4])
+            jeda_batch = int(fparts[-3])
+            durasi = float(fparts[-2])
+            jumlah_pesan = int(fparts[-1])
+            
+            # Source adalah bagian pertama
             source = fparts[0]
-            jumlah = int(fparts[1])
-            message_id = int(fparts[2])
-            jeda_batch = int(fparts[3])
-            durasi = float(fparts[4])
-            jumlah_pesan = int(fparts[5]) if len(fparts) >= 6 else 300
+            
+            # Message IDs adalah bagian antara source dan parameter
+            # Bisa single ID atau multiple IDs dipisahkan ||
+            message_parts = ' '.join(fparts[1:-4])
+            message_str = message_parts  # Bisa berisi || untuk multiple messages
+            
             delay_setting[event.sender_id] = jeda_batch
-            await forward_job(
-                event.sender_id, mode, source, message_id, jumlah, durasi, jumlah_pesan
+            # Simpan task info untuk bisa di-stop
+            if event.sender_id not in active_forward_tasks:
+                active_forward_tasks[event.sender_id] = {'stop_flag': False}
+            task = asyncio.create_task(
+                forward_job(event.sender_id, mode, source, message_str, jumlah, durasi, jumlah_pesan)
             )
+            active_forward_tasks[event.sender_id]['task'] = task
+            await task
+            
         elif mode == 'text':
+            # Parse text mode
+            # Format: "pesan1"||"pesan2"||... jumlah_grup jeda durasi jumlah_pesan
+            # Atau: pesan1||pesan2||... jumlah_grup jeda durasi jumlah_pesan
+            
+            # Split dari kanan untuk mendapatkan parameter numerik
             sisa = rest.rsplit(' ', 4)
             if len(sisa) < 4:
                 return await event.respond(
                     "Format salah:\n"
-                    "/forward text <pesan> <jumlah_grup> <jeda> <durasi_jam> <jumlah_pesan>"
+                    "/forward text <pesan1>||<pesan2>||... <jumlah_grup> <jeda> <durasi_menit> <jumlah_pesan>"
                 )
-            if len(sisa) == 5:
-                text, jumlah, jeda_batch, durasi, jumlah_pesan = sisa
-                jumlah_pesan = int(jumlah_pesan)
-            else:
-                text, jumlah, jeda_batch, durasi = sisa
-                jumlah_pesan = 300
-            jumlah = int(jumlah)
-            jeda_batch = int(jeda_batch)
-            durasi = float(durasi)
+            
+            text_part = sisa[0]  # Bisa berisi || untuk multiple messages
+            jumlah = int(sisa[1])
+            jeda_batch = int(sisa[2])
+            durasi = float(sisa[3])
+            jumlah_pesan = int(sisa[4]) if len(sisa) >= 5 else 300
+            
+            # Bersihkan quotes jika ada
+            text = text_part.strip().strip('"').strip("'")
+            
             delay_setting[event.sender_id] = jeda_batch
-            pesan_simpan[event.sender_id] = text.strip().strip('"')
-            await forward_job(
-                event.sender_id, mode, '', text, jumlah, durasi, jumlah_pesan
+            pesan_simpan[event.sender_id] = text
+            # Simpan task info untuk bisa di-stop
+            if event.sender_id not in active_forward_tasks:
+                active_forward_tasks[event.sender_id] = {'stop_flag': False}
+            task = asyncio.create_task(
+                forward_job(event.sender_id, mode, '', text, jumlah, durasi, jumlah_pesan)
             )
+            active_forward_tasks[event.sender_id]['task'] = task
+            await task
         else:
             await event.respond("Mode harus 'forward' atau 'text'")
     except Exception as e:
@@ -363,6 +511,152 @@ async def set_delay(event):
         logging.error(f"Error pada /setdelay: {e}")
         await event.respond("Gunakan: /setdelay <detik>")
 
+@client.on(events.NewMessage(pattern=r'/setdelaygroup\s+(\d+)'))
+async def set_delay_group(event):
+    if not await require_allowed(event):
+        return
+    try:
+        delay = int(event.pattern_match.group(1))
+        delay_per_group_setting[event.sender_id] = delay
+        await event.respond(f"Delay antar grup diset ke {delay} detik!")
+    except Exception as e:
+        logging.error(f"Error pada /setdelaygroup: {e}")
+        await event.respond("Gunakan: /setdelaygroup <detik>")
+
+@client.on(events.NewMessage(pattern='/cekdelaygroup'))
+async def cek_delay_group(event):
+    if not await require_allowed(event):
+        return
+    delay = delay_per_group_setting.get(event.sender_id, 0)
+    await event.respond(f"Delay antar grup saat ini: {delay} detik")
+
+@client.on(events.NewMessage(pattern='/resetdelaygroup'))
+async def reset_delay_group(event):
+    if not await require_allowed(event):
+        return
+    delay_per_group_setting.pop(event.sender_id, None)
+    await event.respond("Delay antar grup telah direset ke default (0 detik)")
+
+@client.on(events.NewMessage(pattern='/review_pesan'))
+async def review_pesan(event):
+    if not await require_allowed(event):
+        return
+    user_id = event.sender_id
+    pesan = pesan_simpan.get(user_id, "Belum ada pesan default yang disimpan.")
+    await event.respond(f"Pesan default Anda:\n\n{pesan}")
+
+@client.on(events.NewMessage(pattern=r'/ubah_pesan(?:\s+(.+))?$'))
+async def ubah_pesan(event):
+    if not await require_allowed(event):
+        return
+    try:
+        raw_text = event.message.raw_text.strip()
+        parts = raw_text.split(maxsplit=1)
+        if len(parts) < 2:
+            return await event.respond("Format salah. Gunakan: /ubah_pesan <pesan baru>")
+        pesan_baru = parts[1]
+        pesan_simpan[event.sender_id] = pesan_baru.strip()
+        await event.respond(f"Pesan default berhasil diubah menjadi:\n\n{pesan_baru.strip()}")
+    except Exception as e:
+        logging.error(f"Error pada /ubah_pesan: {e}")
+        await event.respond("Format salah. Gunakan: /ubah_pesan <pesan baru>")
+
+@client.on(events.NewMessage(pattern=r'/simpan_preset'))
+async def simpan_preset(event):
+    if not await require_allowed(event):
+        return
+    try:
+        raw_text = event.message.raw_text.strip()
+        parts = raw_text.split(maxsplit=2)
+        if len(parts) < 3:
+            return await event.respond("Format salah. Gunakan: /simpan_preset <nama_preset> <isi_pesan>")
+        
+        nama_preset = parts[1]
+        isi_pesan = parts[2]
+        
+        user_id = event.sender_id
+        if user_id not in preset_pesan:
+            preset_pesan[user_id] = {}
+        
+        preset_pesan[user_id][nama_preset] = isi_pesan.strip()
+        await event.respond(f"Preset '{nama_preset}' berhasil disimpan!")
+    except Exception as e:
+        logging.error(f"Error pada /simpan_preset: {e}")
+        await event.respond("Format salah. Gunakan: /simpan_preset <nama_preset> <isi_pesan>")
+
+@client.on(events.NewMessage(pattern=r'/pakai_preset\s+(\S+)'))
+async def pakai_preset(event):
+    if not await require_allowed(event):
+        return
+    try:
+        nama_preset = event.pattern_match.group(1)
+        user_id = event.sender_id
+        
+        if user_id not in preset_pesan or nama_preset not in preset_pesan[user_id]:
+            return await event.respond(f"Preset '{nama_preset}' tidak ditemukan!")
+        
+        pesan_simpan[user_id] = preset_pesan[user_id][nama_preset]
+        await event.respond(f"Preset '{nama_preset}' telah dipilih sebagai pesan default:\n\n{preset_pesan[user_id][nama_preset]}")
+    except Exception as e:
+        logging.error(f"Error pada /pakai_preset: {e}")
+        await event.respond("Format salah. Gunakan: /pakai_preset <nama_preset>")
+
+@client.on(events.NewMessage(pattern='/list_preset'))
+async def list_preset(event):
+    if not await require_allowed(event):
+        return
+    user_id = event.sender_id
+    
+    if user_id not in preset_pesan or not preset_pesan[user_id]:
+        return await event.respond("Anda belum memiliki preset pesan.")
+    
+    teks = "Daftar preset pesan Anda:\n\n"
+    for idx, (nama, isi) in enumerate(preset_pesan[user_id].items(), 1):
+        preview = isi[:50] + "..." if len(isi) > 50 else isi
+        teks += f"{idx}. {nama}\n   Preview: {preview}\n\n"
+    
+    await event.respond(teks)
+
+@client.on(events.NewMessage(pattern=r'/edit_preset'))
+async def edit_preset(event):
+    if not await require_allowed(event):
+        return
+    try:
+        raw_text = event.message.raw_text.strip()
+        parts = raw_text.split(maxsplit=2)
+        if len(parts) < 3:
+            return await event.respond("Format salah. Gunakan: /edit_preset <nama_preset> <isi_baru>")
+        
+        nama_preset = parts[1]
+        isi_baru = parts[2]
+        
+        user_id = event.sender_id
+        if user_id not in preset_pesan or nama_preset not in preset_pesan[user_id]:
+            return await event.respond(f"Preset '{nama_preset}' tidak ditemukan!")
+        
+        preset_pesan[user_id][nama_preset] = isi_baru.strip()
+        await event.respond(f"Preset '{nama_preset}' berhasil diubah!")
+    except Exception as e:
+        logging.error(f"Error pada /edit_preset: {e}")
+        await event.respond("Format salah. Gunakan: /edit_preset <nama_preset> <isi_baru>")
+
+@client.on(events.NewMessage(pattern=r'/hapus_preset\s+(\S+)'))
+async def hapus_preset(event):
+    if not await require_allowed(event):
+        return
+    try:
+        nama_preset = event.pattern_match.group(1)
+        user_id = event.sender_id
+        
+        if user_id not in preset_pesan or nama_preset not in preset_pesan[user_id]:
+            return await event.respond(f"Preset '{nama_preset}' tidak ditemukan!")
+        
+        del preset_pesan[user_id][nama_preset]
+        await event.respond(f"Preset '{nama_preset}' berhasil dihapus!")
+    except Exception as e:
+        logging.error(f"Error pada /hapus_preset: {e}")
+        await event.respond("Format salah. Gunakan: /hapus_preset <nama_preset>")
+
 @client.on(events.NewMessage(pattern='/review'))
 async def review_jobs(event):
     if not await require_allowed(event):
@@ -372,11 +666,12 @@ async def review_jobs(event):
         teks += "Tidak ada jadwal."
     else:
         for job_id, info in job_data.items():
+            durasi_jam = info['durasi'] / 60.0
             teks += (
                 f"- ID: {job_id}\n"
                 f"  Mode: {info['mode']}\n"
                 f"  Grup: {info['jumlah']}\n"
-                f"  Durasi: {info['durasi']} jam\n"
+                f"  Durasi: {info['durasi']} menit ({durasi_jam:.2f} jam)\n"
             )
     await event.respond(teks)
 
@@ -400,6 +695,8 @@ async def stop_forward(event):
         return
     user_id = event.sender_id
     removed = []
+    
+    # Hentikan scheduled jobs
     for job in scheduler.get_jobs():
         if str(user_id) in job.id:
             try:
@@ -409,10 +706,23 @@ async def stop_forward(event):
                 removed.append(job.id)
             except Exception as e:
                 logging.error(f"Error menghapus job {job.id}: {e}")
-    if removed:
-        await event.respond(f"Semua job forward untuk Anda telah dihapus: {', '.join(removed)}")
+    
+    # Hentikan active forward tasks
+    stopped_active = False
+    if user_id in active_forward_tasks:
+        active_forward_tasks[user_id]['stop_flag'] = True
+        stopped_active = True
+        logging.info(f"Stop flag diaktifkan untuk user {user_id}")
+    
+    if removed or stopped_active:
+        msg = []
+        if removed:
+            msg.append(f"Job terjadwal dihapus: {', '.join(removed)}")
+        if stopped_active:
+            msg.append("Pengiriman pesan aktif sedang dihentikan...")
+        await event.respond("\n".join(msg))
     else:
-        await event.respond("Tidak ditemukan job forward untuk Anda.")
+        await event.respond("Tidak ditemukan job forward aktif untuk Anda.")
 
 @client.on(events.NewMessage(pattern='/blacklist_add'))
 async def add_blacklist(event):
@@ -546,19 +856,22 @@ Hai, sayang! Aku Heartie, userbot-mu yang siap membantu menyebarkan pesan cinta 
 /forward
 Kirim pesan langsung ke grup.
 — Mode forward (dari channel):
- /forward forward @namachannel jumlah_grup id_pesan jeda detik durasi jam jumlah_pesan_perhari
- Contoh: /forward forward @usnchannel 50 27 5 3 300
+ /forward forward @namachannel jumlah_grup id_pesan jeda detik durasi_menit jumlah_pesan_perhari
+ Contoh: /forward forward @usnchannel 50 27 5 180 300
+ Untuk multiple pesan: /forward forward @channel id1||id2||id3 50 5 180 300
 — Mode text (kirim teks langsung):
- /forward text "Halo semua!" jumlah_grup jeda detik durasi jam jumlah_pesan_perhari
- Contoh: /forward text "Halo semua!" 10 5 3 300
+ /forward text "Halo semua!" jumlah_grup jeda detik durasi_menit jumlah_pesan_perhari
+ Contoh: /forward text "Halo semua!" 10 5 180 300
+ Untuk multiple pesan: /forward text "Pesan 1"||"Pesan 2"||"Pesan 3" 10 5 180 300
 ============================
 2. /scheduleforward
  Jadwalkan pesan mingguan otomatis.
  — Format:
- /scheduleforward mode pesan/sumber jumlah_grup durasi jeda jumlah_pesan hari1,day2 jam:menit
+ /scheduleforward mode pesan/sumber jumlah_grup durasi_menit jeda jumlah_pesan hari1,day2 jam:menit
  — Contoh:
- /scheduleforward forward @usnchannel 20 2 5 300 senin,jumat 08:00
- /scheduleforward text "Halo dari bot!" 30 3 5 300 selasa,rabu 10:00
+ /scheduleforward forward @usnchannel 20 120 5 300 senin,jumat 08:00
+ /scheduleforward text "Halo dari bot!" 30 180 5 300 selasa,rabu 10:00
+ Untuk multiple pesan: /scheduleforward text "Pesan 1"||"Pesan 2" 30 180 5 300 senin 08:00
 ============================
 3. Manajemen Preset & Pesan
  — /review_pesan — Lihat pesan default
@@ -573,7 +886,7 @@ Kirim pesan langsung ke grup.
  — /review — Tampilkan jadwal aktif
  — /deletejob — Hapus jadwal forward
  — /setdelay — Atur jeda antar batch kirim
- — /stopforward — Hentikan semua job forward aktif kamu
+ — /stopforward — Hentikan semua job forward aktif kamu (termasuk yang sedang berjalan)
  — /setdelaygroup 5 — Set delay antar grup ke 5 detik (bisa diubah)
  — /cekdelaygroup — Cek delay antar grup kamu saat ini
  — /resetdelaygroup — Reset delay antar grup ke default
@@ -597,7 +910,7 @@ Kirim pesan langsung ke grup.
 ============================
 Cara mendapatkan ID pesan channel:
 Klik kanan bagian kosong (atau tap lama) pada pesan di channel → Salin link.
-Misal, jika linknya  maka id pesan adalah 19.
+Misal, jika linknya https://t.me/channel/19 maka id pesan adalah 19.
 Selamat mencoba dan semoga hari-harimu penuh cinta! Kalau masih ada yang bingung bisa chat pengembangku/kirimkan feedback ya!
 """
     await event.respond(teks)
