@@ -168,15 +168,59 @@ async def forward_job(
             logging.info(reset_msg)
 
         counter = 0
+        total_dialogs_checked = 0
+        groups_found = 0
+        groups_skipped = 0
+        
+        logging.info(f"Mulai iterasi dialog untuk {jumlah_grup} grup, durasi {durasi_menit} menit")
+        
         async for dialog in client.iter_dialogs():
+            total_dialogs_checked += 1
             # Cek stop flag lagi di dalam loop
             if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
+                logging.info(f"Stop flag aktif. Total dialog dicek: {total_dialogs_checked}, Grup ditemukan: {groups_found}, Grup di-skip: {groups_skipped}")
                 break
                 
-            if datetime.now() >= end or harian_counter >= jumlah_pesan:
+            if datetime.now() >= end:
+                logging.info(f"Waktu habis. Total dialog dicek: {total_dialogs_checked}, Grup ditemukan: {groups_found}, Grup di-skip: {groups_skipped}")
                 break
-            if not dialog.is_group or dialog.name in blacklisted_groups:
+            if harian_counter >= jumlah_pesan:
+                logging.info(f"Target harian tercapai. Total dialog dicek: {total_dialogs_checked}, Grup ditemukan: {groups_found}, Grup di-skip: {groups_skipped}")
+                break
+            
+            # Cek apakah ini grup atau supergroup (bukan channel atau private chat)
+            is_group_type = False
+            try:
+                # Cek berbagai tipe grup
+                if dialog.is_group:
+                    is_group_type = True
+                elif hasattr(dialog.entity, 'megagroup') and dialog.entity.megagroup:
+                    is_group_type = True
+                elif hasattr(dialog.entity, '__class__'):
+                    class_name = dialog.entity.__class__.__name__
+                    if 'Chat' in class_name or 'Channel' in class_name:
+                        # Cek apakah ini bukan broadcast channel
+                        if hasattr(dialog.entity, 'broadcast') and not dialog.entity.broadcast:
+                            is_group_type = True
+                        elif not hasattr(dialog.entity, 'broadcast'):
+                            # Jika tidak ada atribut broadcast, anggap sebagai grup
+                            is_group_type = True
+            except Exception as e:
+                logging.error(f"Error cek tipe dialog: {e}")
                 continue
+            
+            if not is_group_type:
+                continue
+            
+            # Cek blacklist
+            dialog_name = dialog.name or "Tanpa Nama"
+            if dialog_name in blacklisted_groups:
+                groups_skipped += 1
+                logging.debug(f"Grup {dialog_name} di-skip karena ada di blacklist")
+                continue
+            
+            groups_found += 1
+            logging.debug(f"Grup ditemukan: {dialog_name} (Total ditemukan: {groups_found})")
             try:
                 # Kirim SEMUA pesan dari messages_list ke grup ini sebagai bubble chat terpisah
                 pesan_terkirim_grup = 0
@@ -292,6 +336,9 @@ async def forward_job(
         # Cek stop flag setelah batch
         if active_forward_tasks.get(user_id, {}).get('stop_flag', False):
             break
+
+        # Log statistik setelah batch
+        logging.info(f"Batch selesai: {counter} grup, {total_counter} pesan terkirim. Total dialog dicek: {total_dialogs_checked}, Grup ditemukan: {groups_found}, Grup di-skip: {groups_skipped}")
 
         if harian_counter >= jumlah_pesan:
             notif = (
