@@ -190,23 +190,44 @@ async def forward_job(
             
             # Cek apakah ini grup atau supergroup (bukan channel atau private chat)
             is_group_type = False
+            dialog_name = dialog.name or "Tanpa Nama"
             try:
+                from telethon.tl.types import Channel, Chat
+                
                 # Cek berbagai tipe grup
                 if dialog.is_group:
                     is_group_type = True
-                elif hasattr(dialog.entity, 'megagroup') and dialog.entity.megagroup:
+                    logging.debug(f"Grup terdeteksi (is_group=True): {dialog_name}")
+                elif isinstance(dialog.entity, Channel):
+                    # Supergroup (megagroup) atau grup biasa, bukan broadcast channel
+                    if hasattr(dialog.entity, 'megagroup') and dialog.entity.megagroup:
+                        is_group_type = True
+                        logging.debug(f"Supergroup terdeteksi (megagroup=True): {dialog_name}")
+                    elif hasattr(dialog.entity, 'broadcast'):
+                        if not dialog.entity.broadcast:
+                            is_group_type = True
+                            logging.debug(f"Channel grup terdeteksi (broadcast=False): {dialog_name}")
+                    else:
+                        # Jika tidak ada atribut broadcast, cek lebih lanjut
+                        is_group_type = True
+                        logging.debug(f"Channel terdeteksi (tanpa broadcast): {dialog_name}")
+                elif isinstance(dialog.entity, Chat):
                     is_group_type = True
-                elif hasattr(dialog.entity, '__class__'):
-                    class_name = dialog.entity.__class__.__name__
-                    if 'Chat' in class_name or 'Channel' in class_name:
-                        # Cek apakah ini bukan broadcast channel
-                        if hasattr(dialog.entity, 'broadcast') and not dialog.entity.broadcast:
-                            is_group_type = True
-                        elif not hasattr(dialog.entity, 'broadcast'):
-                            # Jika tidak ada atribut broadcast, anggap sebagai grup
-                            is_group_type = True
+                    logging.debug(f"Chat grup terdeteksi: {dialog_name}")
+                else:
+                    # Fallback: cek dengan atribut
+                    if hasattr(dialog.entity, 'megagroup') and dialog.entity.megagroup:
+                        is_group_type = True
+                        logging.debug(f"Grup terdeteksi (megagroup attr): {dialog_name}")
             except Exception as e:
-                logging.error(f"Error cek tipe dialog: {e}")
+                logging.error(f"Error cek tipe dialog untuk {dialog_name}: {e}")
+                # Fallback: jika error, coba gunakan dialog.is_group
+                try:
+                    if dialog.is_group:
+                        is_group_type = True
+                        logging.debug(f"Grup terdeteksi (fallback is_group): {dialog_name}")
+                except:
+                    pass
                 continue
             
             if not is_group_type:
@@ -846,6 +867,68 @@ async def cek_status(event):
 async def ping(event):
     await event.respond("Bot aktif dan siap melayani!")
 
+@client.on(events.NewMessage(pattern='/debug_grup'))
+async def debug_grup(event):
+    if not await require_allowed(event):
+        return
+    try:
+        teks = "=== Debug Grup ===\n\n"
+        total_dialog = 0
+        total_grup = 0
+        total_channel = 0
+        total_private = 0
+        grup_list = []
+        
+        async for dialog in client.iter_dialogs(limit=100):  # Limit untuk tidak terlalu lama
+            total_dialog += 1
+            dialog_name = dialog.name or "Tanpa Nama"
+            
+            try:
+                from telethon.tl.types import Channel, Chat
+                
+                if dialog.is_group:
+                    total_grup += 1
+                    is_blacklisted = "❌ BLACKLIST" if dialog_name in blacklisted_groups else "✅"
+                    grup_list.append(f"{is_blacklisted} {dialog_name}")
+                elif isinstance(dialog.entity, Channel):
+                    if hasattr(dialog.entity, 'megagroup') and dialog.entity.megagroup:
+                        total_grup += 1
+                        is_blacklisted = "❌ BLACKLIST" if dialog_name in blacklisted_groups else "✅"
+                        grup_list.append(f"{is_blacklisted} {dialog_name} (Supergroup)")
+                    elif hasattr(dialog.entity, 'broadcast') and dialog.entity.broadcast:
+                        total_channel += 1
+                    else:
+                        total_grup += 1
+                        is_blacklisted = "❌ BLACKLIST" if dialog_name in blacklisted_groups else "✅"
+                        grup_list.append(f"{is_blacklisted} {dialog_name} (Channel Group)")
+                elif isinstance(dialog.entity, Chat):
+                    total_grup += 1
+                    is_blacklisted = "❌ BLACKLIST" if dialog_name in blacklisted_groups else "✅"
+                    grup_list.append(f"{is_blacklisted} {dialog_name} (Chat)")
+                else:
+                    total_private += 1
+            except Exception as e:
+                logging.error(f"Error debug dialog {dialog_name}: {e}")
+                continue
+        
+        teks += f"Total Dialog: {total_dialog}\n"
+        teks += f"Total Grup: {total_grup}\n"
+        teks += f"Total Channel: {total_channel}\n"
+        teks += f"Total Private: {total_private}\n"
+        teks += f"Grup di Blacklist: {len(blacklisted_groups)}\n\n"
+        teks += "=== Daftar Grup (10 pertama) ===\n"
+        
+        for grup in grup_list[:10]:
+            teks += f"{grup}\n"
+        
+        if len(grup_list) > 10:
+            teks += f"\n... dan {len(grup_list) - 10} grup lainnya"
+        
+        await event.respond(teks)
+    except Exception as e:
+        logging.error(f"Error pada /debug_grup: {e}")
+        await event.respond(f"Error: {str(e)}")
+
 @client.on(events.NewMessage(pattern='/restart'))
 async def restart(event):
     if not await require_allowed(event):
@@ -866,8 +949,9 @@ async def log_handler(event):
             await event.respond(f"Log Terbaru!:\n{logs}")
     except FileNotFoundError:
         await event.respond("Log tidak ditemukan bub :(")
-    except Exception:
-        await event.respond("Yahh ada masalah dalam membaca log.")
+    except Exception as e:
+        logging.error(f"Error membaca log: {e}")
+        await event.respond(f"Yahh ada masalah dalam membaca log: {str(e)}")
 
 PENGEMBANG_USERNAME = "explicist"
 @client.on(events.NewMessage(pattern=r'/feedback(?:\s+(.*))?'))
